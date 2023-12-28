@@ -5,6 +5,7 @@ import { GoPerson } from "react-icons/go";
 import SearchBar from "./SearchBar";
 import CartPopper from "../cart/CartPopper";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +20,19 @@ function Header() {
         {window.innerWidth > 600 && <SearchBar />}
       </div>
 
-      <img
-        className="lg:w-96 w-60  max-h-24 justify-center relative"
-        src="../../fullBranding.png"
-      />
+      <NavLink to="/">
+        <img
+          className="lg:w-96 w-60  max-h-24 justify-center relative"
+          src="../../fullBranding.png"
+        />
+      </NavLink>
       <div className="flex justify-end invisible sm:visible">
-        <button className="flex p-2 items-center">
-          <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
-          <span>Account</span>
-        </button>
+        <NavLink to="/account">
+          <button className="flex p-2 items-center">
+            <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
+            <span>Account</span>
+          </button>
+        </NavLink>
         <button className="flex p-2 items-center" onClick={handleClick}>
           <IoBagHandleOutline className="m-2 text-sm md:text-md lg:text-2xl" />
           <span>Cart</span>
