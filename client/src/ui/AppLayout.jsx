@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import HomeScreenCallouts from "../home/HomeScreenCallouts";
 import PromoSection from "../home/PromoSection";
 import ProductCard from "../products/ProductCard";
@@ -8,9 +9,9 @@ function AppLayout() {
   return (
     <div className="max-w-screen h-screen">
       <Header />
-      <PromoSection />
-      <HomeScreenCallouts />
-      <ProductCard />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }

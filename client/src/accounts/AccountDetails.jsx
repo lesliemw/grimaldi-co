@@ -1,7 +1,7 @@
 export default function AccountDetails() {
   return (
     <form>
-      <div className="space-y-12">
+      <div className="space-y-12 m-40">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
             Account Details
@@ -169,7 +169,7 @@ export default function AccountDetails() {
             Notifications
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            We&apos:ll always let you know about important changes, but you pick
+            We&apos;ll always let you know about important changes, but you pick
             what else you want to hear about.
           </p>
 
@@ -300,7 +300,7 @@ export default function AccountDetails() {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
+      <div className="mt-6 flex items-center justify-end gap-x-6 ">
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
