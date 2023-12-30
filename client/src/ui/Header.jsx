@@ -4,17 +4,17 @@ import { GoPerson } from "react-icons/go";
 
 import SearchBar from "./SearchBar";
 import CartPopper from "../cart/CartPopper";
-import { useState } from "react";
+// import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
-    setIsOpen(!isOpen);
+    return <CartPopper />;
   }
   return (
-    <header className="grid grid-cols-3 w-full md: lg:p-5 p-1 justify-between items-center font-extralight bg-white fixed top-0 z-50">
+    <header className="grid grid-cols-3 w-full md: lg:p-3 p-1 justify-between items-center font-themeFont font-extralight bg-white fixed top-0 z-10">
       <div className="flex items-center justify-start ">
         <RxHamburgerMenu className="m-2 text-sm md:text-md lg:text-2xl" />
         {window.innerWidth > 600 && <SearchBar />}
@@ -37,7 +37,7 @@ function Header() {
           <IoBagHandleOutline className="m-2 text-sm md:text-md lg:text-2xl" />
           <span>Cart</span>
         </button>
-        {isOpen && <CartPopper />}
+        {/* {isOpen && <CartPopper />} */}
       </div>
     </header>
   );

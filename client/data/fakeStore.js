@@ -44,7 +44,7 @@ const fakeData = [
     name: "Blanket",
     price: 75,
     category: "household goods",
-    description: "Wool and cashmere blanket, good for all ages",
+    description: "Wool and cashmere blanket",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
   },
 ];

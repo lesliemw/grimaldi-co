@@ -19,6 +19,7 @@
 -database for account storage
 -router
 -server
+-context for login in info as it will be used throughout
 
 //ui
 -sidebar
