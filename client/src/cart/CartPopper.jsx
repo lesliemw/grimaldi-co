@@ -1,6 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HiXMark } from "react-icons/hi2";
+import { useIsOpen } from "../context/IsOpenContext";
 
 const products = [
   {
@@ -31,11 +32,10 @@ const products = [
 ];
 
 export default function CartPopper() {
-  const [open, setOpen] = useState(true);
-
+  const { isOpen, isOpenToggle } = useIsOpen();
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setOpen}>
+    <Transition.Root show={isOpen} as={Fragment} onClose={isOpenToggle}>
+      <Dialog as="div" className="relative z-20">
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -71,7 +71,7 @@ export default function CartPopper() {
                           <button
                             type="button"
                             className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
+                            onClick={isOpenToggle}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -118,7 +118,7 @@ export default function CartPopper() {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        className="font-medium text-indigo-500 hover:text-indigo-600"
                                       >
                                         Remove
                                       </button>
@@ -143,7 +143,7 @@ export default function CartPopper() {
                       <div className="mt-6">
                         <a
                           href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-600"
                         >
                           Checkout
                         </a>
@@ -153,8 +153,8 @@ export default function CartPopper() {
                           or {""}
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
+                            className="font-medium text-indigo-500 hover:text-indigo-600"
+                            onClick={isOpenToggle}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

@@ -4,40 +4,46 @@ import { GoPerson } from "react-icons/go";
 
 import SearchBar from "./SearchBar";
 import CartPopper from "../cart/CartPopper";
-// import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useIsOpen } from "../context/IsOpenContext";
+import Sidebar from "./Sidebar";
+import { useState } from "react";
 
 function Header() {
-  // const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, isOpenToggle } = useIsOpen();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  function handleClick() {
-    return <CartPopper />;
-  }
   return (
-    <header className="grid grid-cols-3 w-full md: lg:p-3 p-1 justify-between items-center font-themeFont font-extralight bg-white fixed top-0 z-10">
-      <div className="flex items-center justify-start ">
-        <RxHamburgerMenu className="m-2 text-sm md:text-md lg:text-2xl" />
+    <header className="grid grid-cols-3 w-full lg:p-3 p-1  items-center font-themeFont font-extralight bg-white fixed top-0 z-10 justify-items-center">
+      <div className="flex items-center ml-5 cursor-pointer ">
+        <RxHamburgerMenu
+          className="m-2 text-sm md:text-md lg:text-2xl"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
+        <span>Menu</span>
+        {isSidebarOpen && <Sidebar />}
         {window.innerWidth > 600 && <SearchBar />}
       </div>
-
-      <NavLink to="/">
-        <img
-          className="lg:w-96 w-60  max-h-24 justify-center relative"
-          src="../../fullBranding.png"
-        />
-      </NavLink>
-      <div className="flex justify-end invisible sm:visible">
+      <div>
+        <NavLink to="/">
+          <img
+            className="lg:w-80 w-52  max-h-24 "
+            src="../../fullBranding.png"
+          />
+        </NavLink>
+      </div>
+      <div className="flex  mr-5 invisible sm:visible">
         <NavLink to="/account">
           <button className="flex p-2 items-center">
             <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
             <span>Account</span>
           </button>
         </NavLink>
-        <button className="flex p-2 items-center" onClick={handleClick}>
+        <button className="flex p-2 items-center" onClick={isOpenToggle}>
           <IoBagHandleOutline className="m-2 text-sm md:text-md lg:text-2xl" />
           <span>Cart</span>
         </button>
-        {/* {isOpen && <CartPopper />} */}
+        {isOpen && <CartPopper />}
       </div>
     </header>
   );

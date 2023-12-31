@@ -6,6 +6,7 @@
 <li>tailwindcss</li>
 <li>react-icons</li>
 <li>express js</li>
+<li>Context</li>
 
 </ul>
 

@@ -1,13 +1,13 @@
 import HomeScreenCallouts from "../home/HomeScreenCallouts";
 import PromoSection from "../home/PromoSection";
-import ProductCard from "../products/ProductCard";
+import ProductsMap from "../products/ProductsMap";
 
 function Home() {
   return (
-    <div>
+    <div className="p-5">
       <PromoSection />
       <HomeScreenCallouts />
-      <ProductCard />
+      <ProductsMap />
     </div>
   );
 }

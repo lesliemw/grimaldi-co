@@ -6,6 +6,7 @@ const fakeData = [
     category: "mens clothing",
     description: "Stylish denim jacket",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const fakeData = [
     category: "women's clothing",
     description: "100% cashmere shirt",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const fakeData = [
     category: "mens shoes",
     description: "Stylish sneakers",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ const fakeData = [
     category: "jewelry",
     description: "24k gold necklace",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ const fakeData = [
     category: "women's clothing",
     description: "100% lambswool scarf",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ const fakeData = [
     category: "household goods",
     description: "Wool and cashmere blanket",
     image: "https://m.media-amazon.com/images/I/713oUBcWw2L._AC_SX679_.jpg",
+    alt: "alt",
   },
 ];
 
