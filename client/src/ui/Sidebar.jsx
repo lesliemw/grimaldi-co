@@ -1,14 +1,19 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { HiXMark } from "react-icons/hi2";
+import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
+import { NavLink } from "react-router-dom";
+import { GoPerson } from "react-icons/go";
+import { IoIosLogOut } from "react-icons/io";
 
 function Sidebar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { isOpenSidebar, isOpenSidebarToggle } = useIsOpenSidebar();
+
   return (
     <Transition.Root
-      show={isSidebarOpen}
+      show={isOpenSidebar}
       as={Fragment}
-      onClose={() => setIsSidebarOpen(!isSidebarOpen)}
+      onClose={isOpenSidebarToggle}
     >
       <Dialog as="div" className="relative z-20">
         <Transition.Child
@@ -46,7 +51,7 @@ function Sidebar() {
                           <button
                             type="button"
                             className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            onClick={isOpenSidebarToggle}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -55,18 +60,59 @@ function Sidebar() {
                         </div>
                       </div>
                       <div className="border-t border-gray-200 flow-root px-4 py-6 sm:px-6">
-                        <ul>
-                          <li>Women</li>
-                          <li>Men</li>
-                          <li>Accessories</li>
-                        </ul>
+                        <Dialog.Title className="text-xl font-medium text-gray-900">
+                          Women
+                        </Dialog.Title>
+                        <div className="my-3">
+                          <ul>
+                            <li>Tops</li>
+                            <li>Trousers</li>
+                            <li>Dresses</li>
+                            <li>Handbags</li>
+                            <li>Jackets</li>
+                            <li>Shoes</li>
+                          </ul>
+                        </div>
+
+                        <Dialog.Title className="text-xl font-medium text-gray-900">
+                          Men
+                        </Dialog.Title>
+                        <div className="my-3">
+                          <ul>
+                            <li>Tops</li>
+                            <li>Trousers</li>
+                            <li>Jackets</li>
+                            <li>Belts</li>
+                            <li>Shoes</li>
+                          </ul>
+                        </div>
+
+                        <Dialog.Title className="text-xl font-medium text-gray-900">
+                          Accessories
+                        </Dialog.Title>
+                        <div className="my-3">
+                          <ul>
+                            <li>Jewelry</li>
+                            <li>Scarves</li>
+                            <li>Homewares</li>
+                            <li>Toiletries</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
+                    <NavLink to="/account">
+                      <button className="flex items-center ml-3">
+                        <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
+                        <span>Account Details</span>
+                      </button>
+                    </NavLink>
+                    <NavLink to="/login">
+                      <button className="flex ml-3 items-center">
+                        <IoIosLogOut className="m-3 text-sm md:text-md lg:text-2xl" />
+                        <span>Sign In</span>
+                      </button>
+                    </NavLink>
                   </div>
-                  <img
-                    src="../../public/brandingOpaque.png"
-                    className="h-52 w-52"
-                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

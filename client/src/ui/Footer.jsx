@@ -7,7 +7,7 @@ function Footer() {
       <div className="px-4 pt-3 pb-4  -mx-4 ">
         <div className="max-w-xl mx-auto">
           <h2 className="text-xl text-left inline-block font-semibold text-gray-800">
-            Join Our Newsletter
+            Sign up to our newsletter.
           </h2>
           <p className="text-gray-700 text-xs pl-px">
             Get all of the latest offers straight to your inbox.

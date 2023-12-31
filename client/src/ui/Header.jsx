@@ -7,21 +7,21 @@ import CartPopper from "../cart/CartPopper";
 import { NavLink } from "react-router-dom";
 import { useIsOpen } from "../context/IsOpenContext";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
 
 function Header() {
   const { isOpen, isOpenToggle } = useIsOpen();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isOpenSidebar, isOpenSidebarToggle } = useIsOpenSidebar();
 
   return (
     <header className="grid grid-cols-3 w-full lg:p-3 p-1  items-center font-themeFont font-extralight bg-white fixed top-0 z-10 justify-items-center">
       <div className="flex items-center ml-5 cursor-pointer ">
         <RxHamburgerMenu
           className="m-2 text-sm md:text-md lg:text-2xl"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          onClick={isOpenSidebarToggle}
         />
         <span>Menu</span>
-        {isSidebarOpen && <Sidebar />}
+        {isOpenSidebar && <Sidebar />}
         {window.innerWidth > 600 && <SearchBar />}
       </div>
       <div>

@@ -1,14 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://lesliemw:IafAahliIs2013@ecommerce.anwfs9w.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 
 app.use(express.json());
 
 mongoose
-  .connect(uri)
+  .connect(
+    `mongodb+srv://lesliemw:${process.env.API_PASSWORD}@ecommerce.anwfs9w.mongodb.net/?retryWrites=true&w=majority`
+  )
   .then(() => console.log("Connected to DB"))
   .catch(console.error);
 
