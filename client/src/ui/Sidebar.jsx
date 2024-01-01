@@ -4,10 +4,12 @@ import { HiXMark } from "react-icons/hi2";
 import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
 import { NavLink } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
-import { IoIosLogOut } from "react-icons/io";
+import { IoIosLogOut, IoIosLogIn } from "react-icons/io";
+import { useUser } from "../context/UserContext";
 
 function Sidebar() {
   const { isOpenSidebar, isOpenSidebarToggle } = useIsOpenSidebar();
+  const { user } = useUser();
 
   return (
     <Transition.Root
@@ -45,7 +47,7 @@ function Sidebar() {
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray-900">
-                          Menu
+                          {user ? `Hi, ${user.fname}` : "Menu"}
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -106,12 +108,21 @@ function Sidebar() {
                         <span>Account Details</span>
                       </button>
                     </NavLink>
-                    <NavLink to="/login">
-                      <button className="flex ml-3 items-center">
-                        <IoIosLogOut className="m-3 text-sm md:text-md lg:text-2xl" />
-                        <span>Sign In</span>
-                      </button>
-                    </NavLink>
+                    {user ? (
+                      <NavLink to="/">
+                        <button className="flex ml-3 items-center">
+                          <IoIosLogOut className="m-3 text-sm md:text-md lg:text-2xl" />
+                          <span>Sign Out</span>
+                        </button>
+                      </NavLink>
+                    ) : (
+                      <NavLink to="/login">
+                        <button className="flex ml-3 items-center">
+                          <IoIosLogIn className="m-3 text-sm md:text-md lg:text-2xl" />
+                          <span>Sign In</span>
+                        </button>
+                      </NavLink>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
