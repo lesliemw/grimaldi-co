@@ -11,7 +11,7 @@ function IsOpenSidebarProvider({ children }) {
 
   return (
     <IsOpenSidebarContext.Provider
-      value={{ isOpenSidebar, isOpenSidebarToggle }}
+      value={{ isOpenSidebar, isOpenSidebarToggle, setIsOpenSidebar }}
     >
       {children}
     </IsOpenSidebarContext.Provider>

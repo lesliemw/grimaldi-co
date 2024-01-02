@@ -10,7 +10,7 @@ function IsOpenProvider({ children }) {
   }
 
   return (
-    <IsOpenContext.Provider value={{ isOpen, isOpenToggle }}>
+    <IsOpenContext.Provider value={{ isOpen, isOpenToggle, setIsOpen }}>
       {children}
     </IsOpenContext.Provider>
   );

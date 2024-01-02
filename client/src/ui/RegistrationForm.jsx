@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function RegistrationForm() {
   const [fname, setFName] = useState("");
@@ -16,9 +17,9 @@ export default function RegistrationForm() {
         email,
         password,
       });
-      alert("Registration successful. Now you can log in");
+      toast.success("Registration successful. Now you can log in");
     } catch (e) {
-      alert("Registration failed. Please try again later");
+      toast.error("Registration failed. Please try again later");
     }
   }
 

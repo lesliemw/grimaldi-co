@@ -2,6 +2,8 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HiXMark } from "react-icons/hi2";
 import { useIsOpen } from "../context/IsOpenContext";
+import { NavLink } from "react-router-dom";
+import CartDetails from "./CartDetails";
 
 const products = [
   {
@@ -32,7 +34,13 @@ const products = [
 ];
 
 export default function CartPopper() {
-  const { isOpen, isOpenToggle } = useIsOpen();
+  const { isOpen, isOpenToggle, setIsOpen } = useIsOpen();
+
+  function handleCheckout() {
+    setIsOpen(false);
+    return <CartDetails />;
+  }
+
   return (
     <Transition.Root show={isOpen} as={Fragment} onClose={isOpenToggle}>
       <Dialog as="div" className="relative z-20">
@@ -141,12 +149,13 @@ export default function CartPopper() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a
-                          href="#"
+                        <NavLink
+                          to="/cart"
+                          onClick={handleCheckout}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-600"
                         >
                           Checkout
-                        </a>
+                        </NavLink>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

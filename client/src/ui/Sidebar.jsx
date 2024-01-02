@@ -6,10 +6,28 @@ import { NavLink } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
 import { IoIosLogOut, IoIosLogIn } from "react-icons/io";
 import { useUser } from "../context/UserContext";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 function Sidebar() {
-  const { isOpenSidebar, isOpenSidebarToggle } = useIsOpenSidebar();
+  const { isOpenSidebar, isOpenSidebarToggle, setIsOpenSidebar } =
+    useIsOpenSidebar();
   const { user } = useUser();
+
+  function handleClose() {
+    setIsOpenSidebar(false);
+  }
+
+  async function handleLogout(e) {
+    e.preventDefault();
+    console.log("button clicked");
+    try {
+      await axios.post("/logout", {});
+      toast.success("You have logged out of you account.");
+    } catch (e) {
+      toast.error("An error has occurred. Please try again.");
+    }
+  }
 
   return (
     <Transition.Root
@@ -102,21 +120,24 @@ function Sidebar() {
                         </div>
                       </div>
                     </div>
-                    <NavLink to="/account">
+                    <NavLink to="/account" onClick={handleClose}>
                       <button className="flex items-center ml-3">
                         <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
                         <span>Account Details</span>
                       </button>
                     </NavLink>
                     {user ? (
-                      <NavLink to="/">
-                        <button className="flex ml-3 items-center">
+                      <NavLink onClick={handleClose}>
+                        <button
+                          className="flex ml-3 items-center"
+                          onClick={handleLogout}
+                        >
                           <IoIosLogOut className="m-3 text-sm md:text-md lg:text-2xl" />
                           <span>Sign Out</span>
                         </button>
                       </NavLink>
                     ) : (
-                      <NavLink to="/login">
+                      <NavLink to="/login" onClick={handleClose}>
                         <button className="flex ml-3 items-center">
                           <IoIosLogIn className="m-3 text-sm md:text-md lg:text-2xl" />
                           <span>Sign In</span>
