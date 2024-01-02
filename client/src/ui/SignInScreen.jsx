@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 export default function SignInScreen() {
@@ -97,6 +97,12 @@ export default function SignInScreen() {
                 Sign in
               </button>
             </div>
+            <p>
+              Don&apos;t have an account?{" "}
+              <span className="text-indigo-400 hover:text-indigo-500">
+                <NavLink to="/register">Sign up for one here</NavLink>
+              </span>
+            </p>
           </form>
         </div>
       </div>

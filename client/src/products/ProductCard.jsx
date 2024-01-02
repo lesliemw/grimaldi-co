@@ -1,9 +1,9 @@
 import HeartButton from "../ui/HeartButton";
 import AddToBagButton from "../ui/AddToBagButton";
 
-function ProductCard({ key, src, alt, name, description, price }) {
+function ProductCard({ src, alt, name, description, price }) {
   return (
-    <div key={key}>
+    <div>
       <div className="relative ">
         <div className=" w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-80 ">
           <img

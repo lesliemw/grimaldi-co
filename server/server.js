@@ -77,12 +77,54 @@ app.get("/profile", (req, res) => {
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, tokenData) => {
       if (err) throw err;
-      const { fname, email, id } = await User.findById(tokenData.id);
-      res.json({ fname, email, id });
+      const {
+        fname,
+        lname,
+        email,
+        id,
+        streetAddress,
+        city,
+        county,
+        country,
+        postalCode,
+      } = await User.findById(tokenData.id);
+      res.json({
+        fname,
+        lname,
+        email,
+        id,
+        streetAddress,
+        city,
+        county,
+        country,
+        postalCode,
+      });
     });
   } else {
     res.json(null);
   }
+});
+
+app.patch("/profile/update", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return res.status(404).json({ error: "User not found dummy" });
+    }
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: req.body },
+      { new: true }
+    );
+    res.json(updatedUser);
+    return;
+  } catch (e) {
+    console.error(e);
+  }
+
+  res.status(500).json({ error: "Internal Server Error" });
 });
 
 //untested code
