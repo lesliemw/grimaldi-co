@@ -72,12 +72,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/logout", (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
-  console.log("is this working??");
-  res.redirect("/");
-});
-
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   if (token) {

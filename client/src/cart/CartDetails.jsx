@@ -1,4 +1,5 @@
 import { FaGooglePay } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 function CartDetails() {
   return (
@@ -204,9 +205,12 @@ function CartDetails() {
                   </a>
                 </div>
                 <div className="flex items-center justify-between ">
-                  <button className="block  py-4 font-bold text-center text-gray-100 uppercase bg-indigo-500 rounded-md hover:bg-indigo-600 w-full">
+                  <NavLink
+                    to="/orderPlaced"
+                    className="block  py-4 font-bold text-center text-gray-100 uppercase bg-indigo-500 rounded-md hover:bg-indigo-600 w-full"
+                  >
                     Checkout
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             </div>

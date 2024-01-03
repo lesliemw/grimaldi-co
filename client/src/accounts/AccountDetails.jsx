@@ -49,7 +49,7 @@ export default function AccountDetails() {
                 Street address
               </label>
               <div className="mt-2">
-                <h4>{user.streetAddress}</h4>
+                <h4>{user?.streetAddress}</h4>
               </div>
             </div>
 
@@ -61,7 +61,7 @@ export default function AccountDetails() {
                 City
               </label>
               <div className="mt-2">
-                <h4>{user.city}</h4>
+                <h4>{user?.city}</h4>
               </div>
             </div>
 
@@ -73,7 +73,7 @@ export default function AccountDetails() {
                 County / Province
               </label>
               <div className="mt-2">
-                <h4>{user.county}</h4>
+                <h4>{user?.county}</h4>
               </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function AccountDetails() {
                 Postal code
               </label>
               <div className="mt-2">
-                <h4>{user.postalCode}</h4>
+                <h4>{user?.postalCode}</h4>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function AccountDetails() {
               Country
             </label>
             <div className="mt-2">
-              <h4>{user.country}</h4>
+              <h4>{user?.country}</h4>
             </div>
           </div>
           <div className="m-6 flex items-center justify-end gap-x-6 ">

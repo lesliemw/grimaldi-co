@@ -11,6 +11,7 @@ import axios from "axios";
 import { UserProvider } from "./context/UserContext";
 import UpdateAccountDetails from "./accounts/UpdateAccountDetails";
 import { Toaster } from "react-hot-toast";
+import SuccessfulOrderScreen from "./orders/SuccessfulOrderScreen";
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
@@ -31,6 +32,7 @@ function App() {
               element={<UpdateAccountDetails />}
             />
             <Route path="cart" element={<Cart />} />
+            <Route path="orderPlaced" element={<SuccessfulOrderScreen />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

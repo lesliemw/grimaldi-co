@@ -1,6 +1,5 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoBagHandleOutline } from "react-icons/io5";
-import { GoPerson } from "react-icons/go";
 
 import SearchBar from "./SearchBar";
 import CartPopper from "../cart/CartPopper";
@@ -8,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { useIsOpen } from "../context/IsOpenContext";
 import Sidebar from "./Sidebar";
 import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
+import AccountDropdownMenu from "../accounts/AccountDropdownMenu";
 
 function Header() {
   const { isOpen, isOpenToggle } = useIsOpen();
@@ -33,12 +33,8 @@ function Header() {
         </NavLink>
       </div>
       <div className="flex  mr-5 invisible sm:visible">
-        <NavLink to="/account">
-          <button className="flex p-2 items-center">
-            <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
-            <span>Account</span>
-          </button>
-        </NavLink>
+        <AccountDropdownMenu />
+
         <button className="flex p-2 items-center" onClick={isOpenToggle}>
           <IoBagHandleOutline className="m-2 text-sm md:text-md lg:text-2xl" />
           <span>Cart</span>
