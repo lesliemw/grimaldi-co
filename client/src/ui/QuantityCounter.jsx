@@ -18,11 +18,22 @@ function QuantityCounter({ count, setCount }) {
         <input
           className="w-12 px-2 justify-center py-4 text-center border-0 rounded-md  bg-gray-50  "
           value={count}
+          placeholder={count}
         />
         <button className="py-2 hover:text-gray-700 " onClick={add}>
           +
         </button>
       </div>
+      {count === 0 && (
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="font-medium text-indigo-500 hover:text-indigo-600"
+          >
+            Remove
+          </button>
+        </div>
+      )}
     </div>
   );
 }

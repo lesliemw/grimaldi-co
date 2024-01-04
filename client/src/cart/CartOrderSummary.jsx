@@ -21,7 +21,7 @@ function CartOrderSummary() {
         <div className="flex items-center justify-between pb-4 mb-4  ">
           <span className="text-gray-700 ">Discount</span>
           <span className="text-xl font-bold text-gray-700 ">
-            € {formattedDiscount}
+            - € {formattedDiscount}
           </span>
         </div>
         <div className="flex items-center border-b border-gray-300 justify-between pb-4 mb-4 ">
