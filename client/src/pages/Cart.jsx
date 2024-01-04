@@ -1,9 +1,9 @@
-import CartDetails from "../cart/CartDetails";
+import CartSummary from "../cart/CartSummary";
 
 function Cart() {
   return (
     <div>
-      <CartDetails />
+      <CartSummary />
     </div>
   );
 }

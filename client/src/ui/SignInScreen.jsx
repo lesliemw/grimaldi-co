@@ -12,7 +12,10 @@ export default function SignInScreen() {
   async function handelSignInSubmit(e) {
     e.preventDefault();
     try {
-      const userDetails = await axios.post("/login", { email, password });
+      const userDetails = await axios.post("/api/user/login", {
+        email,
+        password,
+      });
       setRedirect(true);
       setUser(userDetails.data);
     } catch (e) {

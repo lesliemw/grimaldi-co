@@ -11,7 +11,7 @@ export default function RegistrationForm() {
   async function handelRegisterSubmit(e) {
     e.preventDefault();
     try {
-      await axios.post("/register", {
+      await axios.post("/api/user/register", {
         fname,
         lname,
         email,

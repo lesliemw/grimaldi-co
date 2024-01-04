@@ -3,7 +3,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { HiXMark } from "react-icons/hi2";
 import { useIsOpen } from "../context/IsOpenContext";
 import { NavLink } from "react-router-dom";
-import CartDetails from "./CartDetails";
+import { useUser } from "../context/UserContext";
+import CartSummary from "./CartSummary";
 
 const products = [
   {
@@ -35,10 +36,11 @@ const products = [
 
 export default function CartPopper() {
   const { isOpen, isOpenToggle, setIsOpen } = useIsOpen();
+  const { user } = useUser();
 
   function handleCheckout() {
     setIsOpen(false);
-    return <CartDetails />;
+    return <CartSummary />;
   }
 
   return (
@@ -150,7 +152,7 @@ export default function CartPopper() {
                       </p>
                       <div className="mt-6">
                         <NavLink
-                          to="/cart"
+                          to={user ? "/cart" : "/login"}
                           onClick={handleCheckout}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-600"
                         >

@@ -30,7 +30,7 @@ export default function UpdateAccountDetails() {
   async function handleUpdateAccount(e) {
     e.preventDefault();
     try {
-      await axios.patch("/profile/update", formData);
+      await axios.patch("/api/user/profile/update", formData);
       toast.success("Account details updated.");
       return;
     } catch (e) {

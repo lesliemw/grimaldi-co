@@ -1,12 +1,11 @@
-import fakeData from "../../data/fakeStore";
+import {
+  formattedDiscount,
+  formattedSum,
+  formattedShipping,
+  shipping,
+} from "../../data/priceData";
 
 function OrderPriceSummary() {
-  const totalSum = fakeData.reduce((accumulator, product) => {
-    return accumulator + parseFloat(product.price) || 0;
-  }, 0);
-  const discountTotal = (totalSum * 10) / 100;
-  const shipping = 8;
-
   return (
     <div className="flex justify-center flex-col md:flex-row items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
       <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50  space-y-6">
@@ -16,7 +15,9 @@ function OrderPriceSummary() {
         <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
           <div className="flex justify-between w-full">
             <p className="text-base  leading-4 text-gray-800">Subtotal</p>
-            <p className="text-base  leading-4 text-gray-600">€ {totalSum}</p>
+            <p className="text-base  leading-4 text-gray-600">
+              € {formattedSum}
+            </p>
           </div>
           <div className="flex justify-between items-center w-full">
             <p className="text-base  leading-4 text-gray-800">
@@ -26,12 +27,14 @@ function OrderPriceSummary() {
               </span>
             </p>
             <p className="text-base  leading-4 text-gray-600">
-              - €{discountTotal} (-10%)
+              - €{formattedDiscount} (-10%)
             </p>
           </div>
           <div className="flex justify-between items-center w-full">
             <p className="text-base  leading-4 text-gray-800">Shipping</p>
-            <p className="text-base  leading-4 text-gray-600">€ {shipping}</p>
+            <p className="text-base  leading-4 text-gray-600">
+              € {formattedShipping}
+            </p>
           </div>
         </div>
         <div className="flex justify-between items-center w-full">
@@ -39,7 +42,7 @@ function OrderPriceSummary() {
             Total
           </p>
           <p className="text-base  font-semibold leading-4 text-gray-600">
-            €{shipping + (totalSum - discountTotal)}
+            €{(shipping + (formattedSum - formattedDiscount)).toFixed(2)}
           </p>
         </div>
       </div>
@@ -65,7 +68,7 @@ function OrderPriceSummary() {
             </div>
           </div>
           <p className="text-lg font-semibold leading-6  text-gray-800">
-            €8.00
+            € {shipping}
           </p>
         </div>
         <div className="w-full flex justify-center items-center">

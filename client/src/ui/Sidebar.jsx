@@ -107,7 +107,10 @@ function Sidebar() {
                         </div>
                       </div>
                     </div>
-                    <NavLink to="/account" onClick={handleClose}>
+                    <NavLink
+                      to={user ? "/account" : "/login"}
+                      onClick={handleClose}
+                    >
                       <button className="flex items-center ml-3">
                         <GoPerson className="m-2 text-sm md:text-md lg:text-2xl" />
                         <span>Account Details</span>

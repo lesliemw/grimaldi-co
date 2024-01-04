@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { CiHeart } from "react-icons/ci";
-import { FaHeart } from "react-icons/fa";
+import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 
 function HeartButton() {
   const [liked, setIsLiked] = useState(false);
@@ -12,7 +11,7 @@ function HeartButton() {
       } font-bold`}
       onClick={() => setIsLiked(!liked)}
     >
-      {liked ? <FaHeart /> : <CiHeart />}
+      {liked ? <VscHeartFilled /> : <VscHeart />}
     </button>
   );
 }
