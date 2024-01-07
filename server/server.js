@@ -21,9 +21,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
 
 mongoose
-  .connect(
-    `mongodb+srv://lesliemw:${process.env.API_PASSWORD}@ecommerce.anwfs9w.mongodb.net/?retryWrites=true&w=majority`
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to DB"))
   .catch(console.error);
 

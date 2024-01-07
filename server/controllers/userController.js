@@ -1,10 +1,17 @@
 const jwt = require("jsonwebtoken");
-//for encrypting the password before it hits the database
 const bcrypt = require("bcryptjs");
-const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = "sdfjasfsdfaf";
-
 const User = require("../models/UserModel");
+
+function generateToken(user) {
+  return jwt.sign(
+    {
+      email: user.email,
+      id: user._id,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "30d" }
+  );
+}
 
 //@desc   create a user
 //@route  POST /api/user/register
@@ -12,88 +19,95 @@ async function createUser(req, res) {
   const { fname, lname, email, password } = req.body;
 
   try {
+    const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const createdUser = await User.create({
       fname,
       lname,
       email,
-      password: bcrypt.hashSync(password, bcryptSalt),
+      password: hashedPassword,
     });
+    const token = generateToken(createdUser._id);
+    createdUser.token = token;
+
     res.json(createdUser);
-  } catch (e) {
-    res.status(422).json(e);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(422).json({ error: "Error creating user" });
   }
 }
 
 //@desc   user login function
 //@route  POST /api/user/login
-
 async function userLogin(req, res) {
   const { email, password } = req.body;
-  const createdUser = await User.findOne({ email });
-  if (createdUser) {
-    const passOk = bcrypt.compareSync(password, createdUser.password);
-    if (passOk) {
-      jwt.sign(
-        {
-          email: createdUser.email,
-          id: createdUser._id,
-        },
-        jwtSecret,
-        {},
-        (err, token) => {
-          if (err) throw err;
-          res.cookie("token", token).json(createdUser);
-        }
-      );
+
+  try {
+    const createdUser = await User.findOne({ email });
+
+    if (createdUser && bcrypt.compareSync(password, createdUser.password)) {
+      const token = generateToken(createdUser);
+      res.cookie("token", token).json(createdUser);
+    } else {
+      res.status(401).json({ error: "Invalid credentials" });
     }
+  } catch (error) {
+    console.error("Error during user login:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
 //@desc   retrieve user data for context provider
 //@route  GET /api/user/profile
-
 async function retrieveUserData(req, res) {
   const { token } = req.cookies;
-  if (token) {
-    jwt.verify(token, jwtSecret, {}, async (err, tokenData) => {
-      if (err) throw err;
-      const {
-        fname,
-        lname,
-        email,
-        id,
-        streetAddress,
-        city,
-        county,
-        country,
-        postalCode,
-      } = await User.findById(tokenData.id);
-      res.json({
-        fname,
-        lname,
-        email,
-        id,
-        streetAddress,
-        city,
-        county,
-        country,
-        postalCode,
-      });
-    });
-  } else {
+
+  try {
+    if (token) {
+      const tokenData = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(tokenData.id);
+      if (user) {
+        const {
+          fname,
+          lname,
+          email,
+          id,
+          streetAddress,
+          city,
+          county,
+          country,
+          postalCode,
+        } = user;
+        res.json({
+          fname,
+          lname,
+          email,
+          id,
+          streetAddress,
+          city,
+          county,
+          country,
+          postalCode,
+        });
+        return;
+      }
+    }
+
     res.json(null);
+  } catch (error) {
+    console.error("Error retrieving user data:", error);
+    res.status(401).json({ error: "Invalid token" });
   }
 }
 
 //@desc   update user data
 //@route  PATCH /api/user/profile/update
-
 async function updateUserData(req, res) {
   const { email } = req.body;
+
   try {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return res.status(404).json({ error: "User not found dummy" });
+      return res.status(404).json({ error: "User not found" });
     }
 
     const updatedUser = await User.findOneAndUpdate(
@@ -102,12 +116,10 @@ async function updateUserData(req, res) {
       { new: true }
     );
     res.json(updatedUser);
-    return;
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error("Error updating user data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-
-  res.status(500).json({ error: "Internal Server Error" });
 }
 
 module.exports = { createUser, userLogin, retrieveUserData, updateUserData };

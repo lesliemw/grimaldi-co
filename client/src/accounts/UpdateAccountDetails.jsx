@@ -152,6 +152,9 @@ export default function UpdateAccountDetails() {
                   <option name="Germany" value="Germany">
                     Germany
                   </option>
+                  <option name="USA" value="USA">
+                    USA
+                  </option>
                 </select>
               </div>
             </div>

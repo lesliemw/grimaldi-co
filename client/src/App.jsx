@@ -23,8 +23,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route path="login" element={<SignIn />} />
-            <Route path="register" element={<RegistrationForm />} />
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<RegistrationForm />} />
             <Route path="/" element={<Home />} />
             <Route path="account" element={<Account />} />
             <Route

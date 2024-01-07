@@ -8,10 +8,16 @@ function UserProvider({ children }) {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     if (!user) {
-      axios.get("/api/user/profile").then(({ data }) => {
-        setUser(data);
-        setReady(true);
-      });
+      axios
+        .get("/api/user/profile")
+        .then(({ data }) => {
+          setUser(data);
+          setReady(true);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+          setReady(true);
+        });
     }
   }, [user]);
 
@@ -24,7 +30,7 @@ function UserProvider({ children }) {
 
 function useUser() {
   const context = useContext(UserContext);
-  if (context === undefined) throw new Error("Unable to LoggedIn");
+  if (context === undefined) throw new Error("Unable to access user data");
   return context;
 }
 
