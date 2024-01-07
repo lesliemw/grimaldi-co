@@ -1,6 +1,6 @@
 const express = require("express");
 
-const app = express();
+const router = express.Router();
 
 const {
   createUser,
@@ -10,15 +10,15 @@ const {
 } = require("../controllers/userController");
 
 //create user
-app.post("/register", createUser);
+router.post("/register", createUser);
 
 //user login
-app.post("/login", userLogin);
+router.post("/login", userLogin);
 
 //retrieve user data for context file
-app.get("/profile", retrieveUserData);
+router.get("/profile", retrieveUserData);
 
 //update user data
-app.patch("/profile/update", updateUserData);
+router.patch("/profile/update", updateUserData);
 
-module.exports = app;
+module.exports = router;

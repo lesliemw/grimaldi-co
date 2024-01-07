@@ -6,7 +6,8 @@ const jwtSecret = "sdfjasfsdfaf";
 
 const User = require("../models/UserModel");
 
-//create a user
+//@desc   create a user
+//@route  POST /api/user/register
 async function createUser(req, res) {
   const { fname, lname, email, password } = req.body;
 
@@ -23,7 +24,9 @@ async function createUser(req, res) {
   }
 }
 
-//user login function
+//@desc   user login function
+//@route  POST /api/user/login
+
 async function userLogin(req, res) {
   const { email, password } = req.body;
   const createdUser = await User.findOne({ email });
@@ -46,7 +49,9 @@ async function userLogin(req, res) {
   }
 }
 
-//retrieve user data for context provider
+//@desc   retrieve user data for context provider
+//@route  GET /api/user/profile
+
 async function retrieveUserData(req, res) {
   const { token } = req.cookies;
   if (token) {
@@ -80,7 +85,9 @@ async function retrieveUserData(req, res) {
   }
 }
 
-//update user data
+//@desc   update user data
+//@route  PATCH /api/user/profile/update
+
 async function updateUserData(req, res) {
   const { email } = req.body;
   try {
