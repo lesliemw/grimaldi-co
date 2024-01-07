@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom";
-import {
-  formattedDiscount,
-  shipping,
-  formattedSum,
-} from "../../data/priceData";
+import { useCartPrice } from "../context/CartPriceContext";
 
 function CartOrderSummary() {
+  const { formattedSum, formattedDiscount, shipping } = useCartPrice();
   return (
     <div className="w-full h-fit sticky top-[82px] px-4 xl:w-4/12">
       <div className="p-6 border border-gray-100   bg-gray-100 md:p-8">

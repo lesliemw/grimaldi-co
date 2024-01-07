@@ -1,5 +1,5 @@
 import HeartButton from "../ui/HeartButton";
-import AddToBagButton from "../ui/AddToBagButton";
+import AddToCartButton from "../ui/AddToCartButton";
 
 function ProductCard({ src, alt, name, description, price }) {
   return (
@@ -22,7 +22,7 @@ function ProductCard({ src, alt, name, description, price }) {
       </div>
       <div className="flex p-2 justify-between">
         <HeartButton />
-        <AddToBagButton />
+        <AddToCartButton />
       </div>
     </div>
   );

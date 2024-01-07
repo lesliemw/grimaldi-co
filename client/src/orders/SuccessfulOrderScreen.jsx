@@ -12,7 +12,7 @@ function SuccessfulOrderScreen() {
           Order #13432
         </h1>
         <p className="text-base font-medium leading-6 text-gray-600">
-          21st Mar 2021 at 10:34 PM
+          21st Mar 2024 at 10:34 PM
         </p>
       </div>
       <div className="mt-10 flex flex-col xl:flex-row justify-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">

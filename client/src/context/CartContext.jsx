@@ -7,12 +7,17 @@ function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   useEffect(() => {
     axios.get("/api/cart").then(({ data }) => {
-      setCart(data);
+      setCart(...data);
     });
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

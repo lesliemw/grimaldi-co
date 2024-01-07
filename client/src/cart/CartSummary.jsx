@@ -1,18 +1,20 @@
-import fakeData from "../../data/fakeStore";
+import { useCart } from "../context/CartContext";
 import CartHeader from "./CartHeader";
 import CartOrderSummary from "./CartOrderSummary";
 import CartProducts from "./CartProducts";
 
 function CartSummary() {
+  const { cart } = useCart();
   return (
-    <section className="flex items-center mt-20 lg:mt-56 pb-10 lg:h-screen font-themeFont">
+    <section className="flex items-center mt-20 lg:mt-64 pb-10 lg:h-screen font-themeFont">
       <div className="justify-center flex-1 px-4 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
         <div className="p-8 bg-gray-50 ">
           <h2 className="mb-8 text-4xl font-bold ">Your Cart</h2>
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 mb-8 xl:w-8/12 xl:mb-0">
               <CartHeader />
-              {fakeData.map((product) => (
+
+              {cart?.map((product) => (
                 <CartProducts
                   key={product.id}
                   src={product.image}
@@ -22,6 +24,15 @@ function CartSummary() {
                   price={product.price}
                 />
               ))}
+              {!cart.length && (
+                <div className="h-full text-center mt-10">
+                  <h1>Nothing has been added to the cart 😥</h1>
+                  <p>
+                    Click the back button (or the logo at the top) to continue
+                    shopping.
+                  </p>
+                </div>
+              )}
               <div className="flex flex-wrap items-center gap-4">
                 <span className="text-gray-700 ">Apply Coupon</span>
                 <input

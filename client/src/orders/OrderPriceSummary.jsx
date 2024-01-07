@@ -1,11 +1,8 @@
-import {
-  formattedDiscount,
-  formattedSum,
-  formattedShipping,
-  shipping,
-} from "../../data/priceData";
+import { useCartPrice } from "../context/CartPriceContext";
 
 function OrderPriceSummary() {
+  const { formattedSum, formattedDiscount, formattedShipping, shipping } =
+    useCartPrice();
   return (
     <div className="flex justify-center flex-col md:flex-row items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
       <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50  space-y-6">
