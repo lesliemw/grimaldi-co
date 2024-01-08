@@ -2,8 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ItemSchema = new Schema({
-  product: String,
-  size: String,
+  name: String,
+  size: Array,
+  category: String,
+  description: String,
+  image: String,
+  alt: String,
   quantity: Number,
   price: Number,
 });
