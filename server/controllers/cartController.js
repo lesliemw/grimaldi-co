@@ -1,19 +1,12 @@
 const Cart = require("../models/CartModel");
 
 //@desc   get cart data
-//@route  GET /api/cart/cart
-async function getCart(req, res) {
-  const { product, size, quantity, price } = req.body;
-  const cart = await Cart.find({ user: req.user.id });
-  res.status(200).json(cart);
-}
+//@route  GET /api/cart
+async function getCart(req, res) {}
 
 //@desc   add to card
 //@route  POST /api/cart/:id
-async function addToCart(req, res) {
-  const product = await Item.find({ _id });
-  const cart = await product.insertOne(product);
-}
+async function addToCart(req, res) {}
 
 //@desc   delete from cart
 //@route  DELETE /api/cart/remove

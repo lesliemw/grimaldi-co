@@ -1,21 +1,20 @@
-import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext({});
 
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  useEffect(() => {
-    axios.get("/api/cart").then(({ data }) => {
-      setCart(...data);
-    });
-  }, [cart]);
+
+  function addToCart(itemId) {
+    setCart([...cart, itemId]);
+  }
 
   return (
     <CartContext.Provider
       value={{
         cart,
         setCart,
+        addToCart,
       }}
     >
       {children}

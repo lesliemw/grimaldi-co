@@ -73,12 +73,12 @@ export default function CartPopper() {
                               role="list"
                               className="-my-6 divide-y divide-gray-200"
                             >
-                              {cart?.map((product) => (
-                                <li key={product?.id} className="flex py-6">
+                              {cart?.map((product, i) => (
+                                <li key={i} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img
-                                      src={product?.imageSrc}
-                                      alt={product?.imageAlt}
+                                      src={product?.image}
+                                      alt={product?.alt}
                                       className="h-full w-full object-cover object-center"
                                     />
                                   </div>
@@ -140,15 +140,10 @@ export default function CartPopper() {
                       <div className="mt-6">
                         <NavLink
                           to={user ? "/cart" : "/login"}
+                          onClick={handleCheckout}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-600"
                         >
-                          <button
-                            className="disabled:cursor-not-allowed"
-                            onClick={handleCheckout}
-                            disabled={!cart.length}
-                          >
-                            Checkout
-                          </button>
+                          Checkout
                         </NavLink>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

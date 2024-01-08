@@ -6,7 +6,7 @@ import CartProducts from "./CartProducts";
 function CartSummary() {
   const { cart } = useCart();
   return (
-    <section className="flex items-center mt-20 lg:mt-64 pb-10 lg:h-screen font-themeFont">
+    <section className="flex items-center mt-20 pb-10 lg:h-screen font-themeFont">
       <div className="justify-center flex-1 px-4 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
         <div className="p-8 bg-gray-50 ">
           <h2 className="mb-8 text-4xl font-bold ">Your Cart</h2>
@@ -14,14 +14,14 @@ function CartSummary() {
             <div className="w-full px-4 mb-8 xl:w-8/12 xl:mb-0">
               <CartHeader />
 
-              {cart?.map((product) => (
+              {cart?.map((product, i) => (
                 <CartProducts
-                  key={product.id}
-                  src={product.image}
-                  alt={product.alt}
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
+                  key={i}
+                  src={product?.image}
+                  alt={product?.alt}
+                  name={product?.name}
+                  description={product?.description}
+                  price={product?.price}
                 />
               ))}
               {!cart.length && (

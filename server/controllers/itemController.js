@@ -1,7 +1,7 @@
 const Item = require("../models/ItemModel");
 
 //@desc   get item data from all products
-//@route  GET /api/items/item
+//@route  GET /api/items
 async function getItems(req, res) {
   try {
     const products = await Item.find({});
