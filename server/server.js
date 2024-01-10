@@ -20,7 +20,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use("/api/user", userRoutes);
-app.use("/api", cartRoutes);
+app.use("/api/cart", cartRoutes);
 app.use("/api/items", itemRoutes);
 
 connectDb();

@@ -15,8 +15,13 @@ async function getItems(req, res) {
 //@desc   get item data from one product
 //@route  GET /api/items/:id
 async function getItem(req, res) {
+  const { _id } = req.params;
+
   try {
-    const product = await Item.findById(req.params.id);
+    const product = await Item.findById(_id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
     res.status(200).json(product);
   } catch (e) {
     console.error(e);
