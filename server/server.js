@@ -5,10 +5,6 @@ const cookieParser = require("cookie-parser");
 
 const express = require("express");
 
-const userRoutes = require("./routes/user");
-const cartRoutes = require("./routes/cart");
-const itemRoutes = require("./routes/item");
-
 const app = express();
 
 app.use(express.json());
@@ -17,8 +13,12 @@ const corsOptions = {
   origin: "http://localhost:5173",
   credentials: true,
 };
-
 app.use(cors(corsOptions));
+
+const userRoutes = require("./routes/user");
+const cartRoutes = require("./routes/cart");
+const itemRoutes = require("./routes/item");
+
 app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/items", itemRoutes);
