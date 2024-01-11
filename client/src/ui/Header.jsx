@@ -32,12 +32,12 @@ function Header() {
           />
         </NavLink>
       </div>
-      <div className="flex  mr-5 invisible sm:visible">
+      <div className="flex sm:mr-5 ">
         <AccountDropdownMenu />
 
-        <button className="flex p-2 items-center" onClick={isOpenToggle}>
-          <IoBagHandleOutline className="m-2 text-sm md:text-md lg:text-2xl" />
-          <span>Cart</span>
+        <button className="flex sm:p-2 items-center" onClick={isOpenToggle}>
+          <IoBagHandleOutline className="md:m-2 text-xl md:text-md lg:text-2xl" />
+          <span className="invisible sm:visible">Cart</span>
         </button>
         {isOpen && <CartPopper />}
       </div>

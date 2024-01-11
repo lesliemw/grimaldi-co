@@ -11,11 +11,11 @@ function classNames(...classes) {
 export default function AccountDropdownMenu() {
   const { user } = useUser();
   return (
-    <Menu as="div" className="relative inline-block font-extralight text-left">
+    <Menu as="div" className="relative inline-block  font-extralight text-left">
       <div>
-        <Menu.Button className=" w-full font-themeFont justify-center gap-x-1.5 rounded-md bg-white px-3 py-2  text-gray-700  ring-inset   flex p-2 items-center">
-          <GoPerson className="m-2 text-sm md:text-md lg:text-2xl " />
-          <span>Account</span>
+        <Menu.Button className=" w-full font-themeFont justify-center gap-x-1.5 rounded-md bg-white md:px-3 py-2  text-gray-700  ring-inset   flex md:p-2 items-center">
+          <GoPerson className="m-2 text-xl md:text-md lg:text-2xl " />
+          <span className="invisible sm:visible">Account</span>
         </Menu.Button>
       </div>
 
