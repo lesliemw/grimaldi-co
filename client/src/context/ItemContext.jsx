@@ -8,7 +8,7 @@ function ItemsProvider({ children }) {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     axios
-      .get("/api/items")
+      .get("/items")
       .then(({ data }) => {
         setItems(data);
         setReady(true);

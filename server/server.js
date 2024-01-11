@@ -19,9 +19,9 @@ const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const itemRoutes = require("./routes/item");
 
-app.use("/api/user", userRoutes);
-app.use("/api/cart", cartRoutes);
-app.use("/api/items", itemRoutes);
+app.use("/user", userRoutes);
+app.use("/cart", cartRoutes);
+app.use("/items", itemRoutes);
 
 connectDb();
 

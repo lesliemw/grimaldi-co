@@ -9,7 +9,7 @@ function UserProvider({ children }) {
   useEffect(() => {
     if (!user) {
       axios
-        .get("/api/user/profile")
+        .get("/user/profile")
         .then(({ data }) => {
           setUser(data);
           setReady(true);
