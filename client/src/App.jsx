@@ -7,11 +7,12 @@ import Home from "./pages/Home";
 import ErrorPage from "./ui/ErrorPage";
 import SignIn from "./pages/SignIn";
 import RegistrationForm from "./ui/RegistrationForm";
-import axios from "axios";
-import { UserProvider } from "./context/UserContext";
-import UpdateAccountDetails from "./accounts/UpdateAccountDetails";
-import { Toaster } from "react-hot-toast";
 import SuccessfulOrderScreen from "./orders/SuccessfulOrderScreen";
+import UpdateAccountDetails from "./accounts/UpdateAccountDetails";
+
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import { UserProvider } from "./context/UserContext";
 import { CartProvider } from "./context/CartContext";
 import { CartPriceProvider } from "./context/CartPriceContext";
 import { ItemsProvider } from "./context/ItemContext";
