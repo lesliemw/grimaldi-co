@@ -7,7 +7,7 @@ async function getCart(req, res) {}
 //@desc   add to card
 //@route  POST /api/cart/addToCart
 async function addToCart(req, res) {
-  const cart = newCart({
+  const cart = await newCart.create({
     user: req.user._id,
     cartItems: req.body.cartItems,
   });

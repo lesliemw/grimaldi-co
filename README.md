@@ -37,6 +37,6 @@
 -successful payment page
 -dropdown menu for page order
 -pagination
--dropdown menu for account (account settings, sign in/out)
+-✅dropdown menu for account (account settings, sign in/out)
 
 # ecommerce

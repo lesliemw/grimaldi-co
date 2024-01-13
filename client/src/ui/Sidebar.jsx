@@ -2,18 +2,35 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
 import { IoIosLogOut, IoIosLogIn } from "react-icons/io";
 import { useUser } from "../context/UserContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Sidebar() {
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
   const { isOpenSidebar, isOpenSidebarToggle, setIsOpenSidebar } =
     useIsOpenSidebar();
-  const { user } = useUser();
 
   function handleClose() {
     setIsOpenSidebar(false);
+  }
+
+  async function handleSignOut(e) {
+    e.preventDefault();
+    if (user)
+      axios.post("/user/logout").then(() => {
+        navigate("/");
+        setUser(false);
+        handleClose();
+        toast.success("You have logged out. 👋");
+      });
+    else {
+      toast.error("Error trying to logout. Please try again 😢");
+    }
   }
 
   return (
@@ -117,7 +134,7 @@ function Sidebar() {
                       </button>
                     </NavLink>
                     {user ? (
-                      <NavLink onClick={handleClose}>
+                      <NavLink onClick={user && handleSignOut}>
                         <button className="flex ml-3 items-center">
                           <IoIosLogOut className="m-3 text-sm md:text-md lg:text-2xl" />
                           <span>Sign Out</span>

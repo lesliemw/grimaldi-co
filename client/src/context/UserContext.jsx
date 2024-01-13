@@ -6,6 +6,7 @@ const UserContext = createContext({});
 function UserProvider({ children }) {
   const [user, setUser] = useState(false);
   const [ready, setReady] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     if (!user) {
       axios
@@ -22,7 +23,9 @@ function UserProvider({ children }) {
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, ready }}>
+    <UserContext.Provider
+      value={{ user, setUser, ready, redirect, setRedirect }}
+    >
       {children}
     </UserContext.Provider>
   );

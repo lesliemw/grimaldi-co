@@ -16,7 +16,6 @@ async function getItems(req, res) {
 //@route  GET /api/items/:id
 async function getItem(req, res) {
   const { _id } = req.params;
-
   try {
     const product = await Item.findById(_id);
     if (!product) {

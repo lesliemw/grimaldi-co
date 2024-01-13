@@ -2,14 +2,31 @@ import { useUser } from "../context/UserContext";
 import { GoPerson } from "react-icons/go";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function AccountDropdownMenu() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
+
+  async function handleSignOut(e) {
+    e.preventDefault();
+    if (user)
+      axios.post("/user/logout").then(() => {
+        navigate("/");
+        setUser(false);
+        toast.success("You have logged out. 👋");
+      });
+    else {
+      toast.error("Error trying to logout. Please try again 😢");
+    }
+  }
+
   return (
     <Menu as="div" className="relative inline-block  font-extralight text-left">
       <div>
@@ -74,12 +91,12 @@ export default function AccountDropdownMenu() {
               <Menu.Item>
                 {({ active }) => (
                   <NavLink
-                    type="submit"
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                       "block w-full px-4 py-2 text-left text-sm"
                     )}
-                    to={user ? "/logout" : "/login"}
+                    to={user ? "/" : "/login"}
+                    onClick={user && handleSignOut}
                   >
                     {user ? "Sign Out" : "Sign In"}
                   </NavLink>

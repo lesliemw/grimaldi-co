@@ -56,6 +56,15 @@ async function userLogin(req, res) {
   }
 }
 
+//@desc   user logout function
+//@route  GET /user/logout
+async function userLogout(req, res) {
+  res.cookie("token", "", {
+    expires: new Date(0),
+  });
+  res.status(200).send("Logout successful");
+}
+
 //@desc   retrieve user data for context provider
 //@route  GET /api/user/profile
 async function retrieveUserData(req, res) {
@@ -122,4 +131,10 @@ async function updateUserData(req, res) {
   }
 }
 
-module.exports = { createUser, userLogin, retrieveUserData, updateUserData };
+module.exports = {
+  createUser,
+  userLogin,
+  userLogout,
+  retrieveUserData,
+  updateUserData,
+};
