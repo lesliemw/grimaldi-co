@@ -12,6 +12,8 @@
 <li>bcrypt</li>
 <li>Stripe</li>
 <li>express</li>
+redux
+thunk
 
 </ul>
 

@@ -3,14 +3,27 @@ import { createContext, useContext, useState } from "react";
 const IsOpenContext = createContext();
 
 function IsOpenProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenCart, setIsOpenCart] = useState(false);
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
-  function isOpenToggle() {
-    setIsOpen(() => !isOpen);
+  function isOpenCartToggle() {
+    setIsOpenCart(() => !isOpenCart);
   }
 
+  function isOpenSidebarToggle() {
+    setIsOpenSidebar(() => !isOpenSidebar);
+  }
   return (
-    <IsOpenContext.Provider value={{ isOpen, isOpenToggle, setIsOpen }}>
+    <IsOpenContext.Provider
+      value={{
+        isOpenCart,
+        isOpenCartToggle,
+        setIsOpenCart,
+        isOpenSidebar,
+        isOpenSidebarToggle,
+        setIsOpenSidebar,
+      }}
+    >
       {children}
     </IsOpenContext.Provider>
   );

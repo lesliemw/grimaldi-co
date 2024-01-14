@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { HiXMark } from "react-icons/hi2";
-import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
+import { useIsOpen } from "../context/IsOpenContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
 import { IoIosLogOut, IoIosLogIn } from "react-icons/io";
@@ -12,8 +12,7 @@ import toast from "react-hot-toast";
 function Sidebar() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
-  const { isOpenSidebar, isOpenSidebarToggle, setIsOpenSidebar } =
-    useIsOpenSidebar();
+  const { isOpenSidebar, isOpenSidebarToggle, setIsOpenSidebar } = useIsOpen();
 
   function handleClose() {
     setIsOpenSidebar(false);

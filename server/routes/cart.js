@@ -9,12 +9,12 @@ const {
 } = require("../controllers/cartController");
 
 //get cart data
-router.get("/cart", getCart);
+router.get("/", getCart);
 
 //add to cart
-router.post("/cart/addToCart/:id", addToCart);
+router.post("/addToCart/:id", addToCart);
 
 //delete from cart
-router.delete("/cart/remove", deleteFromCart);
+router.delete("/remove", deleteFromCart);
 
 module.exports = router;

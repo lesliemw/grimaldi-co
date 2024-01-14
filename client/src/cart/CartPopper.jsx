@@ -9,18 +9,18 @@ import { useCart } from "../context/CartContext";
 import { useCartPrice } from "../context/CartPriceContext";
 
 export default function CartPopper() {
-  const { isOpen, isOpenToggle, setIsOpen } = useIsOpen();
+  const { isOpenCart, isOpenCartToggle, setIsOpenCart } = useIsOpen();
   const { user } = useUser();
   const { cart } = useCart();
   const { formattedSum } = useCartPrice();
 
   function handleCheckout() {
-    setIsOpen(false);
+    setIsOpenCart(false);
     return <CartSummary />;
   }
 
   return (
-    <Transition.Root show={isOpen} as={Fragment} onClose={isOpenToggle}>
+    <Transition.Root show={isOpenCart} as={Fragment} onClose={isOpenCartToggle}>
       <Dialog as="div" className="relative z-20">
         <Transition.Child
           as={Fragment}
@@ -57,7 +57,7 @@ export default function CartPopper() {
                           <button
                             type="button"
                             className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={isOpenToggle}
+                            onClick={isOpenCartToggle}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -152,7 +152,7 @@ export default function CartPopper() {
                           <button
                             type="button"
                             className="font-medium text-indigo-500 hover:text-indigo-600"
-                            onClick={isOpenToggle}
+                            onClick={isOpenCartToggle}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

@@ -6,12 +6,11 @@ import CartPopper from "../cart/CartPopper";
 import { NavLink } from "react-router-dom";
 import { useIsOpen } from "../context/IsOpenContext";
 import Sidebar from "./Sidebar";
-import { useIsOpenSidebar } from "../context/isOpenSidebarContext";
 import AccountDropdownMenu from "../accounts/AccountDropdownMenu";
 
 function Header() {
-  const { isOpen, isOpenToggle } = useIsOpen();
-  const { isOpenSidebar, isOpenSidebarToggle } = useIsOpenSidebar();
+  const { isOpenCart, isOpenCartToggle } = useIsOpen();
+  const { isOpenSidebar, isOpenSidebarToggle } = useIsOpen();
 
   return (
     <header className="grid grid-cols-3 w-full lg:p-3 p-1  items-center font-themeFont font-extralight bg-white fixed top-0 z-10 justify-items-center">
@@ -35,11 +34,11 @@ function Header() {
       <div className="flex sm:mr-5 ">
         <AccountDropdownMenu />
 
-        <button className="flex sm:p-2 items-center" onClick={isOpenToggle}>
+        <button className="flex sm:p-2 items-center" onClick={isOpenCartToggle}>
           <IoBagHandleOutline className="md:m-2 text-xl md:text-md lg:text-2xl" />
           <span className="invisible sm:visible">Cart</span>
         </button>
-        {isOpen && <CartPopper />}
+        {isOpenCart && <CartPopper />}
       </div>
     </header>
   );

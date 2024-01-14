@@ -1,8 +1,8 @@
-import { useState } from "react";
 import QuantityCounter from "../ui/QuantityCounter";
+import { useCart } from "../context/CartContext";
 
 function CartProducts({ src, alt, name, description, price }) {
-  const [count, setCount] = useState(1);
+  const { quantity } = useCart();
   return (
     <div>
       <div className="flex flex-wrap items-center mb-6 -mx-4 md:mb-8">
@@ -26,10 +26,10 @@ function CartProducts({ src, alt, name, description, price }) {
         <div className="hidden px-4 lg:block lg:w-2/12">
           <p className="text-lg font-bold text-indigo-500 ">€ {price}</p>
         </div>
-        <QuantityCounter count={count} setCount={setCount} />
+        <QuantityCounter />
         <div className="w-auto px-4 text-right md:w-1/6 lg:w-2/12 ">
           <p className="text-lg font-bold text-indigo-500 ">
-            € {price * count}
+            € {price * quantity}
           </p>
         </div>
       </div>

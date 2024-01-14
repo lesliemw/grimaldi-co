@@ -14,7 +14,7 @@ async function getItems(req, res) {
 
 //@desc   get item data from one product
 //@route  GET /items/:id
-async function getItem(req, res) {
+async function getItemById(req, res) {
   try {
     const product = await Item.findById(req.params.id);
     if (!product) {
@@ -27,4 +27,4 @@ async function getItem(req, res) {
   }
 }
 
-module.exports = { getItems, getItem };
+module.exports = { getItems, getItemById };

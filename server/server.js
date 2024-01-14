@@ -15,10 +15,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+//route imports
 const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const itemRoutes = require("./routes/item");
 
+//routes
 app.use("/user", userRoutes);
 app.use("/cart", cartRoutes);
 app.use("/items", itemRoutes);

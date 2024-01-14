@@ -1,28 +1,47 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
-
+import { createContext, useContext, useState } from "react";
+import { useItems } from "./ItemContext";
+import { useCartPrice } from "./CartPriceContext";
+import { toast } from "react-hot-toast";
 const CartContext = createContext({});
 
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [qty, setQuantity] = useState(1);
+  const [totalQuantity, setTotalQuantity] = useState();
+  const [totalPrice, setTotalPrice] = useState();
+  const { formattedSum } = useCartPrice();
+  const { items } = useItems();
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const productData = await axios.get("/items");
-        setProducts(productData.data);
-        console.log(productData.data);
-      } catch (e) {
-        console.log(e);
-      }
+  function addToCartContext(product, quantity) {
+    const checkProductInCart = items.find((item) => item._id === product._id);
+    setTotalPrice(formattedSum + product.price * quantity);
+    setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
+
+    if (checkProductInCart) {
+      const updatedCartItems = cart.map((cartItem) => {
+        if (cartItem._id === product._id)
+          return {
+            ...cartItem,
+            quantity: cartItem.quantity + quantity,
+          };
+      });
+      setCart(updatedCartItems);
+    } else {
+      product.quantity = quantity;
+      setCart([...cart, { ...product }]);
     }
-    fetchData();
-  }, [cart, products._id]);
+    toast.success(`${qty} ${product.name} added to the cart.`);
+    console.log(cart);
+    console.log(product._id + " added to cart");
+  }
 
-  function addToCartContext() {
-    setCart([...cart, products._id]);
-    console.log(products._id + " added to cart");
+  function increaseQuantity() {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  }
+
+  function decreaseQuantity() {
+    if (qty - 1 < 1) return 1;
+    setQuantity((prevQuantity) => prevQuantity - 1);
   }
 
   return (
@@ -30,8 +49,12 @@ function CartProvider({ children }) {
       value={{
         cart,
         setCart,
-        products,
+        items,
         addToCartContext,
+        decreaseQuantity,
+        increaseQuantity,
+        totalPrice,
+        totalQuantity,
       }}
     >
       {children}

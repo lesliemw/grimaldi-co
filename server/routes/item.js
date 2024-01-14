@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const { getItems, getItem } = require("../controllers/itemController");
+const { getItems, getItemById } = require("../controllers/itemController");
 
-//get items data
+//get all items from db
 router.get("/", getItems);
 
 //get item data
-router.get("/:id", getItem);
+router.get("/:id", getItemById);
 
 module.exports = router;
