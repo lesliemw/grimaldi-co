@@ -7,17 +7,18 @@ async function getCart(req, res) {}
 //@desc   add to card
 //@route  POST /api/cart/addToCart
 async function addToCart(req, res) {
-  const cart = await newCart.create({
-    user: req.user._id,
-    cartItems: req.body.cartItems,
-  });
+  try {
+    const cart = new Cart.create({
+      user: req.user._id,
+      cartItems: req.body.cartItems,
+    });
 
-  cart.save((error, cart) => {
-    if (error) return res.status(400).json({ error });
-    if (cart) {
-      return res.status(201).json({ cart });
-    }
-  });
+    const savedCart = await cart.save();
+    return res.status(201).json({ cart: savedCart });
+  } catch (error) {
+    console.error("Error adding to cart", error);
+    return res.status(500).json({ message: "Internal error" });
+  }
 }
 
 //@desc   delete from cart

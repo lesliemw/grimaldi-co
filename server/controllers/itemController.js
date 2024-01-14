@@ -1,7 +1,7 @@
 const Item = require("../models/ItemModel");
 
 //@desc   get item data from all products
-//@route  GET /api/items
+//@route  GET /items
 async function getItems(req, res) {
   try {
     const products = await Item.find({});
@@ -13,11 +13,10 @@ async function getItems(req, res) {
 }
 
 //@desc   get item data from one product
-//@route  GET /api/items/:id
+//@route  GET /items/:id
 async function getItem(req, res) {
-  const { _id } = req.params;
   try {
-    const product = await Item.findById(_id);
+    const product = await Item.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }

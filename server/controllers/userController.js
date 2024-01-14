@@ -57,7 +57,7 @@ async function userLogin(req, res) {
 }
 
 //@desc   user logout function
-//@route  GET /user/logout
+//@route  POST /user/logout
 async function userLogout(req, res) {
   res.cookie("token", "", {
     expires: new Date(0),

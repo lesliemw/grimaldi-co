@@ -1,7 +1,7 @@
 import HeartButton from "../ui/HeartButton";
 import AddToCartButton from "../ui/AddToCartButton";
 
-function ProductCard({ src, alt, name, description, price }) {
+function ProductCard({ src, alt, name, description, price, onClick }) {
   return (
     <div>
       <div className="relative ">
@@ -22,7 +22,7 @@ function ProductCard({ src, alt, name, description, price }) {
       </div>
       <div className="flex p-2 justify-between">
         <HeartButton />
-        <AddToCartButton />
+        <AddToCartButton {...onClick} />
       </div>
     </div>
   );

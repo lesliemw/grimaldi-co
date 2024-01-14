@@ -12,7 +12,7 @@ const {
 router.get("/cart", getCart);
 
 //add to cart
-router.post("/cart/addToCart", addToCart);
+router.post("/cart/addToCart/:id", addToCart);
 
 //delete from cart
 router.delete("/cart/remove", deleteFromCart);
