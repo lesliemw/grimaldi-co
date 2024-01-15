@@ -12,8 +12,8 @@ export function cartReducer(state = { cartItems: [] }, action) {
       if (existingItem) {
         return {
           ...state,
-          cartItems: state.cartItems.map((queryItem) =>
-            queryItem.product === existingItem.product ? item : queryItem
+          cartItems: state.cartItems.map((query) =>
+            query.product === existingItem.product ? item : query
           ),
         };
       } else {

@@ -16,6 +16,7 @@ import { UserProvider } from "./context/UserContext";
 import { CartProvider } from "./context/CartContext";
 import { CartPriceProvider } from "./context/CartPriceContext";
 import { ItemsProvider } from "./context/ItemContext";
+import ProductDetails from "./products/ProductDetails";
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
@@ -30,8 +31,8 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route element={<AppLayout />}>
-                  <Route path="/login" element={<SignIn />} />
-                  <Route path="/register" element={<RegistrationForm />} />
+                  <Route path="login" element={<SignIn />} />
+                  <Route path="register" element={<RegistrationForm />} />
                   <Route path="/" element={<Home />} />
                   <Route path="account" element={<Account />} />
                   <Route
@@ -42,6 +43,10 @@ function App() {
                   <Route
                     path="orderPlaced"
                     element={<SuccessfulOrderScreen />}
+                  />
+                  <Route
+                    path="items/:itemId"
+                    element={<ProductDetails match />}
                   />
                   <Route path="*" element={<ErrorPage />} />
                 </Route>
