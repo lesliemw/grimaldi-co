@@ -5,18 +5,28 @@ import { useIsOpen } from "../context/IsOpenContext";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import CartSummary from "./CartSummary";
-import { useCart } from "../context/CartContext";
 import { useCartPrice } from "../context/CartPriceContext";
+
+import { useDispatch, useSelector } from "react-redux";
+import CartItem from "./CartItem";
+import { removeFromCart } from "../redux/actions/cartActions";
 
 export default function CartPopper() {
   const { isOpenCart, isOpenCartToggle, setIsOpenCart } = useIsOpen();
   const { user } = useUser();
-  const { cart } = useCart();
   const { formattedSum } = useCartPrice();
 
   function handleCheckout() {
     setIsOpenCart(false);
     return <CartSummary />;
+  }
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  function removeItemFromCart(id) {
+    dispatch(removeFromCart(id));
   }
 
   return (
@@ -67,52 +77,24 @@ export default function CartPopper() {
                       </div>
 
                       <div className="mt-8">
-                        {cart.length ? (
+                        {cartItems.length ? (
                           <div className="flow-root">
                             <ul
                               role="list"
                               className="-my-6 divide-y divide-gray-200"
                             >
-                              {cart?.map((product, i) => (
-                                <li key={i} className="flex py-6">
-                                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                    <img
-                                      src={product?.image}
-                                      alt={product?.alt}
-                                      className="h-full w-full object-cover object-center"
-                                    />
-                                  </div>
-
-                                  <div className="ml-4 flex flex-1 flex-col">
-                                    <div>
-                                      <div className="flex justify-between text-base font-medium text-gray-900">
-                                        <h3>
-                                          <a href={product?.href}>
-                                            {product?.name}
-                                          </a>
-                                        </h3>
-                                        <p className="ml-4">{product?.price}</p>
-                                      </div>
-                                      <p className="mt-1 text-sm text-gray-500">
-                                        {product?.color}
-                                      </p>
-                                    </div>
-                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">
-                                        Qty {product?.quantity}
-                                      </p>
-
-                                      <div className="flex">
-                                        <button
-                                          type="button"
-                                          className="font-medium text-indigo-500 hover:text-indigo-600"
-                                        >
-                                          Remove
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
+                              {cartItems?.map((product, i) => (
+                                <CartItem
+                                  key={i}
+                                  product={product}
+                                  image={product.image}
+                                  alt={product.alt}
+                                  name={product.name}
+                                  size={product.size}
+                                  price={product.price * product.qty}
+                                  qty={product.qty}
+                                  removeItemFromCart={removeItemFromCart}
+                                />
                               ))}
                             </ul>
                           </div>
