@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 export default function SignInScreen() {
@@ -8,6 +8,8 @@ export default function SignInScreen() {
   const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
   const { setUser } = useUser();
+
+  const navigate = useNavigate();
 
   async function handelSignInSubmit(e) {
     e.preventDefault();
@@ -23,7 +25,7 @@ export default function SignInScreen() {
     }
   }
   if (redirect) {
-    return <Navigate to={"/"} />;
+    navigate("/")
   }
 
   return (

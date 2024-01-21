@@ -12,8 +12,8 @@
 <li>bcrypt</li>
 <li>Stripe</li>
 <li>express</li>
-redux
-thunk
+<li>redux toolkit</li>
+<li>RTK Query</li>
 
 </ul>
 

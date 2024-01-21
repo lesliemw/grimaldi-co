@@ -14,7 +14,7 @@ function generateToken(user) {
 }
 
 //@desc   create a user
-//@route  POST /api/user/register
+//@route  POST /user/register
 async function createUser(req, res) {
   const { fname, lname, email, password } = req.body;
 
@@ -37,7 +37,7 @@ async function createUser(req, res) {
 }
 
 //@desc   user login function
-//@route  POST /api/user/login
+//@route  POST /user/login
 async function userLogin(req, res) {
   const { email, password } = req.body;
 
@@ -48,7 +48,7 @@ async function userLogin(req, res) {
       const token = generateToken(createdUser);
       res.cookie("token", token).json(createdUser);
     } else {
-      res.status(401).json({ error: "Invalid credentials" });
+      res.status(401).json({ error: "Invalid email or password" });
     }
   } catch (error) {
     console.error("Error during user login:", error);

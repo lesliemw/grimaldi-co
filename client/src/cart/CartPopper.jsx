@@ -1,14 +1,16 @@
+import CartSummary from "./CartSummary";
+import CartItem from "./CartItem";
+
+import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import { HiXMark } from "react-icons/hi2";
+
 import { useIsOpen } from "../context/IsOpenContext";
-import { NavLink } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import CartSummary from "./CartSummary";
 import { useCartPrice } from "../context/CartPriceContext";
 
-import { useDispatch, useSelector } from "react-redux";
-import CartItem from "./CartItem";
 import { removeFromCart } from "../redux/actions/cartActions";
 
 export default function CartPopper() {
