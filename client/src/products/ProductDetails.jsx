@@ -12,7 +12,7 @@ import Loading from "../ui/Loading";
 
 function ProductDetails() {
   const [qty, setQty] = useState(1);
-  const [size, setSize] = useState("md");
+  const [size, setSize] = useState("");
   const dispatch = useDispatch();
 
   const itemDetails = useSelector((state) => state.getItemDetails);

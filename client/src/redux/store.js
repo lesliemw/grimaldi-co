@@ -5,6 +5,7 @@ import { getItemDetailsReducer, getItemsReducer } from "./reducers/itemReducer";
 
 import authReducer from "../slices/authSlice";
 import { apiSlice } from "../slices/api/apiSlice";
+// import cartReducer from "../slices/cartSlice";
 
 const store = configureStore({
   reducer: {
